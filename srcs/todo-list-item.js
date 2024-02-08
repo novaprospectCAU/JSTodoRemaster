@@ -23,6 +23,7 @@ export class TodoListItem {
     //삭제 버튼
     const newListItemDeleteButton = document.createElement("button");
     newListItemDeleteButton.classList.add("todo-list__delete-button");
+    newListItemDeleteButton.textContent = "X";
 
     newListItemText.textContent = item.text;
 
@@ -50,13 +51,7 @@ export class TodoListItem {
 
     newListItemCheckButton.addEventListener("click", () => {
       item.isComplete = !item.isComplete;
-      if (item.isComplete === true) {
-        newListItemText.classList.add("todo-list__item-checked");
-        newListItemCheckButton.textContent = "✔️";
-      } else {
-        newListItemText.classList.remove("todo-list__item-checked");
-        newListItemCheckButton.textContent = "";
-      }
+      updateAll();
     });
   }
   update() {}
