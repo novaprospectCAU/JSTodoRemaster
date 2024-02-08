@@ -33,7 +33,7 @@ export class TodoListItem {
     newListItem.append(newListItemLeft);
     newListItem.append(newListItemDeleteButton);
 
-    if (item.isComplete === true) {
+    if (item.isCompleted) {
       newListItemText.classList.add("todo-list__item-checked");
       newListItemCheckButton.textContent = "✔️";
     } else {
