@@ -15,21 +15,5 @@ export class TodoList {
 
   update() {
     //원래 만들었던 TodoListItem들을 하나씩 삭제한다
-    for (const todoListItem of this.todoListItems) {
-      todoListItem.remove();
-    }
-
-    this.todoListItems = [];
-
-    //새로운 TodoListItem들을 만든다.
-    for (const item of this.store.items) {
-      const listItem = new TodoListItem(
-        this.element,
-        this.store,
-        item,
-        this.updateAll
-      );
-      this.todoListItems.push(listItem);
-    }
   }
 }
