@@ -47,6 +47,17 @@ export class TodoListItem {
       store.items = store.items.filter((currentItem) => currentItem !== item);
       updateAll();
     });
+
+    newListItemCheckButton.addEventListener("click", () => {
+      item.isComplete = !item.isComplete;
+      if (item.isComplete === true) {
+        newListItemText.classList.add("todo-list__item-checked");
+        newListItemCheckButton.textContent = "✔️";
+      } else {
+        newListItemText.classList.remove("todo-list__item-checked");
+        newListItemCheckButton.textContent = "";
+      }
+    });
   }
   update() {}
   remove() {
