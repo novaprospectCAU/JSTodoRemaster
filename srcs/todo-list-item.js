@@ -50,7 +50,7 @@ export class TodoListItem {
     });
 
     newListItemCheckButton.addEventListener("click", () => {
-      item.isComplete = !item.isComplete;
+      item.isCompleted = !item.isCompleted;
       updateAll();
     });
   }
