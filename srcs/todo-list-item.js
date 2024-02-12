@@ -1,5 +1,11 @@
 export class TodoListItem {
   constructor(list, store, item, updateAll) {
+    this.list = list;
+    this.store = store;
+    this.item = item;
+    this.updateAll = updateAll;
+    this.id = this.item.id;
+
     const newListItem = document.createElement("li");
     newListItem.classList.add("todo-list__item");
 
@@ -25,7 +31,7 @@ export class TodoListItem {
     newListItemDeleteButton.classList.add("todo-list__delete-button");
     newListItemDeleteButton.textContent = "X";
 
-    newListItemText.textContent = item.text;
+    newListItemText.textContent = this.item.text;
 
     newListItemLeft.append(newListItemCheckButton);
     newListItemLeft.append(newListItemText);
@@ -33,7 +39,7 @@ export class TodoListItem {
     newListItem.append(newListItemLeft);
     newListItem.append(newListItemDeleteButton);
 
-    if (item.isCompleted) {
+    if (this.item.isCompleted) {
       newListItemText.classList.add("todo-list__item-checked");
       newListItemCheckButton.textContent = "✔️";
     } else {
@@ -41,21 +47,63 @@ export class TodoListItem {
       newListItemCheckButton.textContent = "";
     }
 
-    list.appendChild(newListItem);
+    this.list.appendChild(newListItem);
+
     this.element = newListItem;
+    this.listItemText = newListItemText;
+    this.listItemCheckButton = newListItemCheckButton;
 
     newListItemDeleteButton.addEventListener("click", () => {
-      store.items = store.items.filter((currentItem) => currentItem !== item);
+      this.store.items = this.store.items.filter(
+        (currentItem) => currentItem !== this.item
+      );
+      this.remove();
       updateAll();
     });
 
     newListItemCheckButton.addEventListener("click", () => {
-      item.isCompleted = !item.isCompleted;
+      this.item.isCompleted = !this.item.isCompleted;
       updateAll();
     });
   }
-  update() {}
+  update() {
+    manageTodoListItemByChecked();
+    manageTodoListItemByFilter();
+  }
   remove() {
     this.element.remove();
+  }
+
+  /**
+   * 체크버튼의 체크 여부에 따라 속성을 변경하는 함수
+   */
+  manageTodoListItemByChecked() {
+    if (this.item.isCompleted) {
+      this.listItemText.classList.add("todo-list__item-checked");
+      this.listItemCheckButton.textContent = "✔️";
+    } else {
+      this.listItemText.classList.remove("todo-list__item-checked");
+      this.listItemCheckButton.textContent = "";
+    }
+  }
+  /**
+   * currentFilter에 따라 속성을 변경하는 함수
+   */
+  manageTodoListItemByFilter() {
+    if (this.store.currentFilter === "all") {
+      this.element.remove("todo-list__item--hiding");
+    } else if (this.store.currentFilter === "active") {
+      if (this.item.isCompleted) {
+        this.element.add("todo-list__item--hiding");
+      } else {
+        this.element.remove("todo-list__item--hiding");
+      }
+    } else {
+      if (this.item.isCompleted) {
+        this.element.remove("todo-list__item--hiding");
+      } else {
+        this.element.add("todo-list__item--hiding");
+      }
+    }
   }
 }

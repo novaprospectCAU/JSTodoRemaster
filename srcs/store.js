@@ -5,4 +5,6 @@ export class Store {
   items = [];
   /** "all, active, completed" */
   currentFilter = "all"; //옵션
+  id = 0;
+  update() {}
 }

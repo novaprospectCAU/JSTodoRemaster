@@ -18,6 +18,10 @@
   background-color: #f0f0f0;
 }
 
+.todo-list__item--hiding {
+  display: none;
+}
+
 .todo-list__item-left {
   display: flex;
   justify-content: stretch;
