@@ -15,5 +15,8 @@ export class TodoList {
 
   update() {
     //원래 만들었던 TodoListItem들을 하나씩 삭제한다
+    if (this.store.items.length > this.todoListItems.length) {
+    } else if (this.store.items.length < this.todoListItems.length) {
+    }
   }
 }
