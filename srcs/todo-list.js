@@ -15,19 +15,13 @@ export class TodoList {
 
   update() {
     // this.manageTodoListItemByFilter();
-    console.log("before update");
-    console.log("store length : ", this.store.items.length);
-    console.log("list item length : ", this.todoListItems.length);
+
     if (this.store.items.length > this.todoListItems.length) {
       this.addListItemsByStoreItems();
-      console.log("store > list items");
-      console.log("store length : ", this.store.items.length);
-      console.log("list item length : ", this.todoListItems.length);
+      this.updateAll();
     } else if (this.store.items.length < this.todoListItems.length) {
       this.deleteListItemsByStoreItems();
-      console.log("store < list items");
-      console.log("store length : ", this.store.items.length);
-      console.log("list item length : ", this.todoListItems.length);
+      this.updateAll();
     }
   }
 
@@ -42,8 +36,9 @@ export class TodoList {
     ) {
       this.todoListItems[index].remove();
     }
-    this.todoListItems.splice(0, this.store.items.length);
+    this.todoListItems = this.todoListItems.slice(0, this.store.items.length);
     for (let index = 0; index < this.todoListItems.length; index++) {
+      console.log(this.todoListItems.length);
       this.todoListItems[index].id = this.store.items[index].id;
       this.todoListItems[index].text = this.store.items[index].text;
       this.todoListItems[index].isCompleted =

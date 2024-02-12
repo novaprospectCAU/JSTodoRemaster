@@ -5,6 +5,8 @@ export class TodoListItem {
     this.item = item;
     this.updateAll = updateAll;
     this.id = this.item.id;
+    this.text = this.item.text;
+    this.isCompleted = this.item.isCompleted;
 
     const newListItem = document.createElement("li");
     newListItem.classList.add("todo-list__item");
