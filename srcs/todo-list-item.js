@@ -4,6 +4,7 @@ export class TodoListItem {
     this.store = store;
     this.item = item;
     this.updateAll = updateAll;
+
     this.id = this.item.id;
     this.text = this.item.text;
     this.isCompleted = this.item.isCompleted;
@@ -64,7 +65,7 @@ export class TodoListItem {
     });
 
     newListItemCheckButton.addEventListener("click", () => {
-      this.item.isCompleted = !this.item.isCompleted;
+      this.isCompleted = !this.isCompleted;
       updateAll();
     });
   }
@@ -76,11 +77,16 @@ export class TodoListItem {
     this.element.remove();
   }
 
+  // updateTodoListItemByTodoList() {
+  //   if (this.isCompleted) {
+
+  //   }
+  // }
   /**
    * 체크버튼의 체크 여부에 따라 속성을 변경하는 함수
    */
   manageTodoListItemByChecked() {
-    if (this.item.isCompleted) {
+    if (this.isCompleted) {
       this.listItemText.classList.add("todo-list__item-checked");
       this.listItemCheckButton.textContent = "✔️";
     } else {
@@ -107,5 +113,26 @@ export class TodoListItem {
         this.element.add("todo-list__item--hiding");
       }
     }
+  }
+
+  /**
+   * 새로운 개체로 업데이트하는 함수(업데이트 함수와 분리해서 사용)
+   */
+  changeTodoListItemByTodoList() {
+    // this.id = item.id;
+    // this.text = item.text;
+    // this.isCompleted = item.isCompleted;
+
+    this.listItemText.textContent = this.text;
+    if (!this.isCompleted) {
+      this.listItemText.classList.add("todo-list__item-checked");
+      this.listItemCheckButton.textContent = "✔️";
+    } else {
+      this.listItemText.classList.remove("todo-list__item-checked");
+      this.listItemCheckButton.textContent = "";
+    }
+    console.log(this.store.items);
+    console.log("ㅁㄴㅇㄹ");
+    console.log(this);
   }
 }

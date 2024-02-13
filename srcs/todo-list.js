@@ -20,9 +20,6 @@ export class TodoList {
       this.addListItemsByStoreItems();
     } else if (this.store.items.length < this.todoListItems.length) {
       this.deleteListItemsByStoreItems();
-      console.log(this.store.items);
-      console.log("asdf");
-      console.log(this.todoListItems);
     }
   }
 
@@ -31,15 +28,15 @@ export class TodoList {
    */
   deleteListItemsByStoreItems() {
     this.todoListItems = this.todoListItems.slice(0, this.store.items.length);
-    console.log("여기부터");
-    console.log(this.todoListItems.length);
-    console.log("여기까지");
     for (let index = 0; index < this.todoListItems.length; index++) {
-      console.log(this.todoListItems.length);
       this.todoListItems[index].id = this.store.items[index].id;
       this.todoListItems[index].text = this.store.items[index].text;
       this.todoListItems[index].isCompleted =
         this.store.items[index].isCompleted;
+      this.todoListItems[index]
+        .changeTodoListItemByTodoList
+        // this.store.items[index]
+        ();
     }
   }
   /**

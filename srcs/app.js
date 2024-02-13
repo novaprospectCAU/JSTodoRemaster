@@ -1,6 +1,7 @@
 import { Store } from "./store.js";
 import { TodoInput } from "./todo-input.js";
 import { TodoList } from "./todo-list.js";
+import { ToggleButton } from "./toggle-button.js";
 import { Toolbar } from "./toolbar.js";
 
 /**
@@ -17,10 +18,12 @@ export class App {
     this.todoInput = new TodoInput(root, store, updateAll);
     this.todoList = new TodoList(root, store, updateAll);
     this.toolbar = new Toolbar(root, store, updateAll);
+    this.toggleButton = new ToggleButton(root, store, updateAll);
   }
   update() {
     this.todoInput.update();
     this.todoList.update();
     this.toolbar.update();
+    this.toggleButton.update();
   }
 }
