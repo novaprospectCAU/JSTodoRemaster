@@ -70,7 +70,7 @@ export class TodoListItem {
     });
   }
   update() {
-    manageTodoListItemByChecked();
+    manageTodoListItemByCheck();
     manageTodoListItemByFilter();
   }
   remove() {
@@ -85,7 +85,7 @@ export class TodoListItem {
   /**
    * 체크버튼의 체크 여부에 따라 속성을 변경하는 함수
    */
-  manageTodoListItemByChecked() {
+  manageTodoListItemByCheck() {
     if (this.isCompleted) {
       this.listItemText.classList.add("todo-list__item-checked");
       this.listItemCheckButton.textContent = "✔️";
@@ -101,38 +101,17 @@ export class TodoListItem {
     if (this.store.currentFilter === "all") {
       this.element.remove("todo-list__item--hiding");
     } else if (this.store.currentFilter === "active") {
-      if (this.item.isCompleted) {
+      if (this.isCompleted) {
         this.element.add("todo-list__item--hiding");
       } else {
         this.element.remove("todo-list__item--hiding");
       }
     } else {
-      if (this.item.isCompleted) {
+      if (this.isCompleted) {
         this.element.remove("todo-list__item--hiding");
       } else {
         this.element.add("todo-list__item--hiding");
       }
     }
-  }
-
-  /**
-   * 새로운 개체로 업데이트하는 함수(업데이트 함수와 분리해서 사용)
-   */
-  changeTodoListItemByTodoList() {
-    // this.id = item.id;
-    // this.text = item.text;
-    // this.isCompleted = item.isCompleted;
-
-    this.listItemText.textContent = this.text;
-    if (!this.isCompleted) {
-      this.listItemText.classList.add("todo-list__item-checked");
-      this.listItemCheckButton.textContent = "✔️";
-    } else {
-      this.listItemText.classList.remove("todo-list__item-checked");
-      this.listItemCheckButton.textContent = "";
-    }
-    console.log(this.store.items);
-    console.log("ㅁㄴㅇㄹ");
-    console.log(this);
   }
 }

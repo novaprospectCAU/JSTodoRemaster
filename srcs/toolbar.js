@@ -5,11 +5,6 @@ import { ClearButton } from "./clear-button.js";
 export class Toolbar {
   constructor(root, store, updateAll) {
     this.toolbar = root.querySelector(".todo-list__menu");
-    // const counter = root.querySelector(".menu__count");
-    // const optionAll = root.querySelector(".control-all");
-    // const optionActive = root.querySelector(".control-active");
-    // const optionCompleted = root.querySelector(".control-completed");
-    // const clearCompleted = root.querySelector(".menu-clear");
 
     this.store = store;
 
