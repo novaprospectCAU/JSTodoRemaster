@@ -1,7 +1,7 @@
 export class ToggleButton {
   constructor(root, store, updateAll) {
     this.store = store;
-    this.toggleButton = document.querySelector(".check-all");
+    this.toggleButton = root.querySelector(".check-all");
 
     this.toggleButton.addEventListener("click", () => {
       if (this.store.items.some((storeItem) => !storeItem.isCompleted)) {

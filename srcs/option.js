@@ -1,9 +1,9 @@
 export class Option {
   constructor(root, store, updateAll) {
     this.store = store;
-    this.filterAll = document.querySelector(".control-all");
-    this.filterActive = document.querySelector(".control-active");
-    this.filterCompleted = document.querySelector(".control-completed");
+    this.filterAll = root.querySelector(".control-all");
+    this.filterActive = root.querySelector(".control-active");
+    this.filterCompleted = root.querySelector(".control-completed");
     this.filterAll.addEventListener("click", () => {
       this.store.currentFilter = "all";
       updateAll();
