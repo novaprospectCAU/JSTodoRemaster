@@ -22,7 +22,7 @@
   background-color: rgb(0, 0, 0, 0.003);
 }
 
-.control-button--unactive {
+.control-button--inactive {
   border-color: rgb(0, 0, 0, 0.003);
   box-shadow: none;
 }

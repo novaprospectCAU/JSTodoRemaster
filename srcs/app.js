@@ -22,8 +22,8 @@ export class App {
   }
   update() {
     this.todoInput.update();
-    this.todoList.update();
     this.toolbar.update();
     this.toggleButton.update();
+    this.todoList.update();
   }
 }

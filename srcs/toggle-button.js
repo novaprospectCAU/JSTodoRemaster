@@ -4,10 +4,7 @@ export class ToggleButton {
     this.toggleButton = document.querySelector(".check-all");
 
     this.toggleButton.addEventListener("click", () => {
-      if (
-        this.store.items.filter((storeItem) => !storeItem.isCompleted).length >
-        0
-      ) {
+      if (this.store.items.some((storeItem) => !storeItem.isCompleted)) {
         for (const item of this.store.items) {
           item.isCompleted = true;
         }
@@ -25,7 +22,7 @@ export class ToggleButton {
       this.toggleButton.classList.remove("check-all--off");
       this.toggleButton.classList.remove("check-all--on");
     } else {
-      if (this.store.items.filter((item) => !item.isCompleted).length > 0) {
+      if (this.store.items.some((item) => !item.isCompleted)) {
         this.toggleButton.classList.remove("check-all--initial");
         this.toggleButton.classList.add("check-all--off");
         this.toggleButton.classList.remove("check-all--on");

@@ -5,54 +5,41 @@ export class TodoListItem {
     this.item = item;
     this.updateAll = updateAll;
 
-    this.id = this.item.id;
-    this.text = this.item.text;
-    this.isCompleted = this.item.isCompleted;
-
     this.element = this.init();
 
     this.listItemText = this.element.querySelector(".todo-list__item-text");
     this.listItemCheckButton = this.element.querySelector(
       ".todo-list__item-check-button"
     );
+    this.update(this.item);
   }
-  update() {
-    manageTodoListItemByCheck();
+  update(item) {
+    this.item = item;
+    this.listItemText.textContent = this.item.text;
+    if (this.item.isCompleted) {
+      this.listItemText.classList.add("todo-list__item-checked");
+      this.listItemCheckButton.textContent = "✔️";
+    } else {
+      this.listItemText.classList.remove("todo-list__item-checked");
+      this.listItemCheckButton.textContent = "";
+    }
+
+    if (this.store.currentFilter === "all") {
+      this.element.classList.remove("todo-list__item--hiding");
+    } else if (this.store.currentFilter === "active") {
+      this.element.classList.toggle(
+        "todo-list__item--hiding",
+        this.item.isCompleted
+      );
+    } else {
+      this.element.classList.toggle(
+        "todo-list__item--hiding",
+        !this.item.isCompleted
+      );
+    }
   }
   remove() {
     this.element.remove();
-  }
-  /**
-   * 새로운 개체를 대입해서 변경하는 함수
-   */
-  fixAttributes(item) {
-    this.item = item;
-    console.log(this.item);
-    this.id = this.item.id;
-    this.text = this.item.text;
-    this.isCompleted = this.item.isCompleted;
-
-    this.listItemText.textContent = this.item.text;
-    console.log(this.listItemText.textContent);
-    if (this.isCompleted) {
-      this.listItemText.classList.add("todo-list__item-checked");
-      this.listItemCheckButton.textContent = "✔️";
-    } else {
-      this.listItemText.classList.remove("todo-list__item-checked");
-      this.listItemCheckButton.textContent = "";
-    }
-  }
-  /**
-   * 체크버튼의 체크 여부에 따라 속성을 변경하는 함수
-   */
-  manageTodoListItemByCheck() {
-    if (this.isCompleted) {
-      this.listItemText.classList.add("todo-list__item-checked");
-      this.listItemCheckButton.textContent = "✔️";
-    } else {
-      this.listItemText.classList.remove("todo-list__item-checked");
-      this.listItemCheckButton.textContent = "";
-    }
   }
   /**
    * 리스트 아이템을 만드는 함수(생성자에서만 사용)
@@ -83,26 +70,15 @@ export class TodoListItem {
     newListItemDeleteButton.classList.add("todo-list__delete-button");
     newListItemDeleteButton.textContent = "X";
 
-    newListItemText.textContent = this.item.text;
-
-    if (this.isCompleted) {
-      newListItemText.classList.add("todo-list__item-checked");
-      newListItemCheckButton.textContent = "✔️";
-    } else {
-      newListItemText.classList.remove("todo-list__item-checked");
-      newListItemCheckButton.textContent = "";
-    }
-
     newListItemDeleteButton.addEventListener("click", () => {
       this.store.items = this.store.items.filter(
         (currentItem) => currentItem !== this.item
       );
-      this.remove();
       this.updateAll();
     });
 
     newListItemCheckButton.addEventListener("click", () => {
-      this.isCompleted = !this.isCompleted;
+      this.item.isCompleted = !this.item.isCompleted;
       this.updateAll();
     });
 
@@ -112,7 +88,7 @@ export class TodoListItem {
     newListItem.append(newListItemLeft);
     newListItem.append(newListItemDeleteButton);
 
-    this.list.prepend(newListItem);
+    this.list.append(newListItem);
     return newListItem;
   }
 }

@@ -19,17 +19,17 @@ export class Option {
   }
   update() {
     if (this.store.currentFilter === "all") {
-      this.filterAll.classList.remove("control-button--unactive");
-      this.filterActive.classList.add("control-button--unactive");
-      this.filterCompleted.classList.add("control-button--unactive");
+      this.filterAll.classList.remove("control-button--inactive");
+      this.filterActive.classList.add("control-button--inactive");
+      this.filterCompleted.classList.add("control-button--inactive");
     } else if (this.store.currentFilter === "active") {
-      this.filterAll.classList.add("control-button--unactive");
-      this.filterActive.classList.remove("control-button--unactive");
-      this.filterCompleted.classList.add("control-button--unactive");
+      this.filterAll.classList.add("control-button--inactive");
+      this.filterActive.classList.remove("control-button--inactive");
+      this.filterCompleted.classList.add("control-button--inactive");
     } else {
-      this.filterAll.classList.add("control-button--unactive");
-      this.filterActive.classList.add("control-button--unactive");
-      this.filterCompleted.classList.remove("control-button--unactive");
+      this.filterAll.classList.add("control-button--inactive");
+      this.filterActive.classList.add("control-button--inactive");
+      this.filterCompleted.classList.remove("control-button--inactive");
     }
   }
 }
