@@ -20,7 +20,6 @@ export class ToggleButton {
     });
   }
   update() {
-    console.log(this.store.items.length);
     if (this.store.items.length === 0) {
       this.toggleButton.classList.add("check-all--initial");
       this.toggleButton.classList.remove("check-all--off");
