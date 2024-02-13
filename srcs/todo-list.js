@@ -18,10 +18,11 @@ export class TodoList {
 
     if (this.store.items.length > this.todoListItems.length) {
       this.addListItemsByStoreItems();
-      this.updateAll();
     } else if (this.store.items.length < this.todoListItems.length) {
       this.deleteListItemsByStoreItems();
-      this.updateAll();
+      console.log(this.store.items);
+      console.log("asdf");
+      console.log(this.todoListItems);
     }
   }
 
@@ -29,14 +30,10 @@ export class TodoList {
    * 실제 아이템이 삭제된 경우 todoListItems의 element를 제거하는 함수
    */
   deleteListItemsByStoreItems() {
-    for (
-      let index = this.store.items.length;
-      index < this.todoListItems.length;
-      index++
-    ) {
-      this.todoListItems[index].remove();
-    }
     this.todoListItems = this.todoListItems.slice(0, this.store.items.length);
+    console.log("여기부터");
+    console.log(this.todoListItems.length);
+    console.log("여기까지");
     for (let index = 0; index < this.todoListItems.length; index++) {
       console.log(this.todoListItems.length);
       this.todoListItems[index].id = this.store.items[index].id;

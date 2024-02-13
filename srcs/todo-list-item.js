@@ -49,7 +49,7 @@ export class TodoListItem {
       newListItemCheckButton.textContent = "";
     }
 
-    this.list.appendChild(newListItem);
+    this.list.prepend(newListItem);
 
     this.element = newListItem;
     this.listItemText = newListItemText;
